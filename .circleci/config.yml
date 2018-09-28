@@ -10,9 +10,6 @@ workflows:
       - race:
           requires:
             - clean-code
-      - compile:
-          requires:
-            - clean-code
 
 jobs:
   clean-code:
