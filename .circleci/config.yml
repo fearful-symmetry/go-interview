@@ -25,15 +25,12 @@ jobs:
       - checkout
       - run:
           name: Run go vet
-          command: go tool vet *.go
+          command: go tool vet ./*/*.go
       - run:
           name: Run golint
           command: |
             go get -u github.com/golang/lint/golint
             golint ./
-      - run:
-          name: gofmt
-          command: test -z $(gofmt -s -l \*.go)
   test:
     environment:
       - GO11MODULES: ON
@@ -44,10 +41,10 @@ jobs:
       - checkout
       - run:
           name: Test all
-          command: go test -a
+          command: go test -a ./*/
       - run:
           name: Test coverage
-          command: go test -cover
+          command: go test -cover ./*/
   race:
     environment:
       - GO11MODULES: ON
@@ -58,16 +55,4 @@ jobs:
       - checkout
       - run:
           name: Race detector
-          command: go test -race
-  compile:
-    environment:
-      - GO11MODULES: ON
-    docker:
-      - image: circleci/golang:1.11
-    working_directory: ~/github.com/fearful-symmetry/go-interview
-    steps:
-      - checkout
-      - run:
-          name: build go-interview
-          command: |
-            go build -a
+          command: go test -race ./*/
