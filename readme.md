@@ -1,5 +1,6 @@
 # Go interview questions
 
+[![CircleCI](https://circleci.com/gh/fearful-symmetry/go-interview.svg?style=svg)](https://circleci.com/gh/fearful-symmetry/go-interview)
 
 A collection of common coding interview questions, all written in go
 
