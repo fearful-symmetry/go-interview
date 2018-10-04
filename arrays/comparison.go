@@ -1,5 +1,7 @@
 package arrays
 
+import "strings"
+
 //QUESTION: determine if a string is one edit away from another string
 
 //check to see if the change is a replacement
@@ -54,4 +56,14 @@ func IsOneEdit(s1, s2 string) bool {
 	}
 
 	return false
+}
+
+// Question: Check to see if a string is a rotation of another string. For example, obcatb is a rotation of bobcat, rotated after the first b. Other example: secretarybird and tarybirdsecre, rotated after the "secre"
+
+//CheckIsRotationContains takes two strings, s1 and s2, and determines if s1 is a rotation of s2
+func CheckIsRotationContains(s1, s2 string) bool {
+
+	//this is the 'clever' way to do it: cat the substring together, see if the check string contains the cat'ed string
+	s1Cat := s1 + s1
+	return strings.Contains(s1Cat, s2)
 }

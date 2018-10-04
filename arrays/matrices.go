@@ -67,3 +67,37 @@ func RotateMatrixInPlace(m [][]int) [][]int {
 
 	return m
 }
+
+// QUESTION: If an element in an MxN matrix is 0, zero the entire row and column
+
+//ZeroRowColumn searches the matrix for a zero, then zeros out the row and column of the zero
+func ZeroRowColumn(m [][]int) [][]int {
+
+	//make one pass through the array, mark all rows and colums that we are zeroing
+	var rows []int
+	var columns []int
+
+	for x, col := range m {
+		for y := range col {
+			if m[x][y] == 0 {
+				rows = append(rows, x)
+				columns = append(columns, y)
+			}
+		}
+	}
+
+	//Now that we have all the rows and colums, zero out each
+	for _, col := range columns {
+		for index := 0; index < len(m); index++ {
+			m[index][col] = 0
+		}
+	}
+
+	for _, row := range rows {
+		for index := 0; index < len(m[0]); index++ {
+			m[row][index] = 0
+		}
+	}
+
+	return m
+}

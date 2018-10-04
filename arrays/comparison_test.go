@@ -37,3 +37,13 @@ func TestIsOneEdit(t *testing.T) {
 		t.Errorf("wrong result: %s and %s", str8, str9)
 	}
 }
+
+func TestCheckIsRotationContains(t *testing.T) {
+
+	s1 := "obcatb"
+	s2 := "bobcat"
+
+	if !CheckIsRotationContains(s1, s2) {
+		t.Errorf("Wrong result")
+	}
+}
