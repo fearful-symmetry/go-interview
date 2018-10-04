@@ -40,7 +40,7 @@ func UniqueCharInStringArr(s string, ignoreWhitespace bool) bool {
 	//So find the largest known value. Despite the fact that we're iterating twice, this will be faster, as we have no hashmaps.
 	var largest int32
 	for _, r := range s {
-		if int32(r) > largest {
+		if r > largest {
 			largest = r
 		}
 	}

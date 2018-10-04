@@ -79,7 +79,7 @@ func FindPermutationArr(s1, s2 string) bool {
 	//Do something similar to what we did before
 	var largest int32
 	for _, r := range s1 + s2 {
-		if int32(r) > largest {
+		if r > largest {
 			largest = r
 		}
 	}
