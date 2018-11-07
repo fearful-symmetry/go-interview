@@ -2,6 +2,7 @@ package trees
 
 import (
 	"fmt"
+	"math"
 )
 
 //tree data structures are cool.
@@ -72,6 +73,8 @@ func (t *Tree) Print() {
 }
 
 //BFS implements a....BFS using queues.
+//We had to make our own queue for this.
+//visit the current node, then add the left and right to the queue, repeat
 func (t *Tree) BFS() []int {
 
 	tq := Newq()
@@ -122,4 +125,31 @@ func (t *Tree) DFS() []int {
 	}
 
 	return dat
+}
+
+//A helper function that we'll be calling recursively
+func treeHeight(t *Tree) int {
+	if t == nil {
+		return -1
+	}
+
+	return int(math.Max(float64(treeHeight(t.Left)),
+		float64(treeHeight(t.Right)))) + 1
+}
+
+//IsBal Checks if a binary tree is balanced.
+//In this context, 'balanced' means the left and right subtrees have heights that differ by no more than 1
+//This is not the most optimal solution, but it's the easiest to understand, for now
+func (t *Tree) IsBal() bool {
+
+	if t == nil {
+		return true
+	}
+
+	hd := treeHeight(t.Left) - treeHeight(t.Right)
+	if math.Abs(float64(hd)) > 1 {
+		return false //not balanced
+	}
+	return t.Left.IsBal() && t.Right.IsBal()
+
 }
